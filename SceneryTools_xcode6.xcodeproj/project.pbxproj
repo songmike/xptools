@@ -341,6 +341,13 @@
 		D64A08AF127AFDEA000D58A7 /* NetHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64A08AE127AFDEA000D58A7 /* NetHelpers.cpp */; };
 		D64A08B0127AFDEA000D58A7 /* NetHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64A08AE127AFDEA000D58A7 /* NetHelpers.cpp */; };
 		D64A08B1127AFDEA000D58A7 /* NetHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64A08AE127AFDEA000D58A7 /* NetHelpers.cpp */; };
+		D64B333C1FCA16D2002207D0 /* bucketalloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D64B33151FCA0EBF002207D0 /* bucketalloc.c */; };
+		D64B333D1FCA16DC002207D0 /* geom.c in Sources */ = {isa = PBXBuildFile; fileRef = D64B33191FCA0EBF002207D0 /* geom.c */; };
+		D64B333E1FCA16DF002207D0 /* dict.c in Sources */ = {isa = PBXBuildFile; fileRef = D64B33171FCA0EBF002207D0 /* dict.c */; };
+		D64B333F1FCA16E8002207D0 /* mesh.c in Sources */ = {isa = PBXBuildFile; fileRef = D64B331B1FCA0EBF002207D0 /* mesh.c */; };
+		D64B33401FCA16EB002207D0 /* priorityq.c in Sources */ = {isa = PBXBuildFile; fileRef = D64B331D1FCA0EBF002207D0 /* priorityq.c */; };
+		D64B33411FCA16F5002207D0 /* sweep.c in Sources */ = {isa = PBXBuildFile; fileRef = D64B331F1FCA0EBF002207D0 /* sweep.c */; };
+		D64B33421FCA16FA002207D0 /* tess.c in Sources */ = {isa = PBXBuildFile; fileRef = D64B33211FCA0EBF002207D0 /* tess.c */; };
 		D64E06F80C25970F004B20D0 /* GUI_MemoryHog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64E06F70C25970F004B20D0 /* GUI_MemoryHog.cpp */; };
 		D652F3E41D5B5A46008566F8 /* WED_ValidateATCRunwayChecks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D652F3E21D5B5A46008566F8 /* WED_ValidateATCRunwayChecks.cpp */; };
 		D6536E9C0C3D7F3100005385 /* WED_TexMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6536E9B0C3D7F3100005385 /* WED_TexMgr.cpp */; };
@@ -1250,6 +1257,21 @@
 		D64A08AE127AFDEA000D58A7 /* NetHelpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetHelpers.cpp; sourceTree = "<group>"; };
 		D64A0E83110F820A006172C3 /* ObjPlacement2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjPlacement2.h; sourceTree = "<group>"; };
 		D64A0E84110F820A006172C3 /* ObjPlacement2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjPlacement2.cpp; sourceTree = "<group>"; };
+		D64B33101FCA0EBF002207D0 /* tesselator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tesselator.h; sourceTree = "<group>"; };
+		D64B33151FCA0EBF002207D0 /* bucketalloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bucketalloc.c; sourceTree = "<group>"; };
+		D64B33161FCA0EBF002207D0 /* bucketalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bucketalloc.h; sourceTree = "<group>"; };
+		D64B33171FCA0EBF002207D0 /* dict.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dict.c; sourceTree = "<group>"; };
+		D64B33181FCA0EBF002207D0 /* dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dict.h; sourceTree = "<group>"; };
+		D64B33191FCA0EBF002207D0 /* geom.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = geom.c; sourceTree = "<group>"; };
+		D64B331A1FCA0EBF002207D0 /* geom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geom.h; sourceTree = "<group>"; };
+		D64B331B1FCA0EBF002207D0 /* mesh.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mesh.c; sourceTree = "<group>"; };
+		D64B331C1FCA0EBF002207D0 /* mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mesh.h; sourceTree = "<group>"; };
+		D64B331D1FCA0EBF002207D0 /* priorityq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = priorityq.c; sourceTree = "<group>"; };
+		D64B331E1FCA0EBF002207D0 /* priorityq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = priorityq.h; sourceTree = "<group>"; };
+		D64B331F1FCA0EBF002207D0 /* sweep.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sweep.c; sourceTree = "<group>"; };
+		D64B33201FCA0EBF002207D0 /* sweep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sweep.h; sourceTree = "<group>"; };
+		D64B33211FCA0EBF002207D0 /* tess.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tess.c; sourceTree = "<group>"; };
+		D64B33221FCA0EBF002207D0 /* tess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tess.h; sourceTree = "<group>"; };
 		D64E06F60C25970F004B20D0 /* GUI_MemoryHog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUI_MemoryHog.h; sourceTree = "<group>"; };
 		D64E06F70C25970F004B20D0 /* GUI_MemoryHog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUI_MemoryHog.cpp; sourceTree = "<group>"; };
 		D652F3E21D5B5A46008566F8 /* WED_ValidateATCRunwayChecks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WED_ValidateATCRunwayChecks.cpp; sourceTree = "<group>"; };
@@ -2358,6 +2380,44 @@
 			path = WEDLibrary;
 			sourceTree = "<group>";
 		};
+		D64B33041FCA0EBF002207D0 /* libtess2-master */ = {
+			isa = PBXGroup;
+			children = (
+				D64B330F1FCA0EBF002207D0 /* Include */,
+				D64B33141FCA0EBF002207D0 /* Source */,
+			);
+			path = "libtess2-master";
+			sourceTree = "<group>";
+		};
+		D64B330F1FCA0EBF002207D0 /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				D64B33101FCA0EBF002207D0 /* tesselator.h */,
+			);
+			path = Include;
+			sourceTree = "<group>";
+		};
+		D64B33141FCA0EBF002207D0 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D64B33151FCA0EBF002207D0 /* bucketalloc.c */,
+				D64B33161FCA0EBF002207D0 /* bucketalloc.h */,
+				D64B33171FCA0EBF002207D0 /* dict.c */,
+				D64B33181FCA0EBF002207D0 /* dict.h */,
+				D64B33191FCA0EBF002207D0 /* geom.c */,
+				D64B331A1FCA0EBF002207D0 /* geom.h */,
+				D64B331B1FCA0EBF002207D0 /* mesh.c */,
+				D64B331C1FCA0EBF002207D0 /* mesh.h */,
+				D64B331D1FCA0EBF002207D0 /* priorityq.c */,
+				D64B331E1FCA0EBF002207D0 /* priorityq.h */,
+				D64B331F1FCA0EBF002207D0 /* sweep.c */,
+				D64B33201FCA0EBF002207D0 /* sweep.h */,
+				D64B33211FCA0EBF002207D0 /* tess.c */,
+				D64B33221FCA0EBF002207D0 /* tess.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		D66569BA1CE261FC00662E5C /* WEDFileCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -3454,6 +3514,7 @@
 		D6EAD1900E6DBA8900FC011A /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				D64B33041FCA0EBF002207D0 /* libtess2-master */,
 			);
 			path = SDK;
 			sourceTree = "<group>";
@@ -4551,6 +4612,7 @@
 				D6ED36A00B67964D00D5484E /* BitmapUtils.cpp in Sources */,
 				D6ED36A10B67964D00D5484E /* EndianUtils.c in Sources */,
 				D6ED36A20B67964D00D5484E /* MatrixUtils.cpp in Sources */,
+				D64B33421FCA16FA002207D0 /* tess.c in Sources */,
 				D6ED36A30B67964D00D5484E /* PlatformUtils.mac.mm in Sources */,
 				D6ED36A40B67964D00D5484E /* TexUtils.cpp in Sources */,
 				D6ED36A50B67964D00D5484E /* ObjUtils.cpp in Sources */,
@@ -4602,6 +4664,7 @@
 				D6ED37110B67964D00D5484E /* PolyRasterUtils.cpp in Sources */,
 				D6ED371F0B67964D00D5484E /* b64.c in Sources */,
 				D6ED37220B67964D00D5484E /* BWImage.cpp in Sources */,
+				D64B333F1FCA16E8002207D0 /* mesh.c in Sources */,
 				D6F3F08B1D072BE800188B28 /* CSVParser.cpp in Sources */,
 				D6F621651DF7297900B4091F /* GUI_TextTable.cpp in Sources */,
 				D6ED37230B67964D00D5484E /* GISUtils.cpp in Sources */,
@@ -4672,6 +4735,7 @@
 				D62FCEFE0BD51D9200ED6CF8 /* WED_Helipad.cpp in Sources */,
 				D608C9841E01B8F8002E68F9 /* WED_HierarchyFilterBar.cpp in Sources */,
 				D62FCF310BD535AA00ED6CF8 /* WED_Runway.cpp in Sources */,
+				D64B333D1FCA16DC002207D0 /* geom.c in Sources */,
 				D62FCF6B0BD539EE00ED6CF8 /* WED_Sealane.cpp in Sources */,
 				D62FCF8D0BD53C7F00ED6CF8 /* WED_Airport.cpp in Sources */,
 				D62FCFBC0BD541BF00ED6CF8 /* WED_AirportNode.cpp in Sources */,
@@ -4707,6 +4771,7 @@
 				D6E023EE0C39842700BD789F /* WED_PackageListAdapter.cpp in Sources */,
 				2F8378A01D070F000033848D /* CACHE_DomainPolicy.cpp in Sources */,
 				D6F8E4B90C3C861C007A2EA7 /* WED_OverlayImage.cpp in Sources */,
+				D64B333C1FCA16D2002207D0 /* bucketalloc.c in Sources */,
 				D6F8E4BA0C3C861C007A2EA7 /* WED_TextureNode.cpp in Sources */,
 				D6536E9C0C3D7F3100005385 /* WED_TexMgr.cpp in Sources */,
 				D66864250C4F783C00DB3056 /* WED_DSFExport.cpp in Sources */,
@@ -4726,6 +4791,7 @@
 				D6226FB30E4C8884005BD1D7 /* WED_LibraryListAdapter.cpp in Sources */,
 				D6226FB90E4C889F005BD1D7 /* WED_LibraryPane.cpp in Sources */,
 				D6F3F0871D07294E00188B28 /* WED_MetaDataDefaults.cpp in Sources */,
+				D64B33411FCA16F5002207D0 /* sweep.c in Sources */,
 				D695CD6F0EE0862E009C5F2E /* WED_GISBoundingBox.cpp in Sources */,
 				D695CD7F0EE08808009C5F2E /* WED_ExclusionZone.cpp in Sources */,
 				D695CDA10EE089E5009C5F2E /* WED_CreateBoxTool.cpp in Sources */,
@@ -4744,6 +4810,7 @@
 				D678ADF40F7952B700F72139 /* tri_stripper.cpp in Sources */,
 				D6956ED40F82E91100F6718E /* WED_Assert.cpp in Sources */,
 				D6956ED50F82E91100F6718E /* WED_Globals.cpp in Sources */,
+				D64B333E1FCA16DF002207D0 /* dict.c in Sources */,
 				D6C38FDD0FA0D6E500EFA56C /* GUI_Unicode.cpp in Sources */,
 				D6F88E0E1C20A6BD00057F4D /* WED_RoadNode.cpp in Sources */,
 				D60B0ECD0FCC886A001E8DD3 /* WED_Orthophoto.cpp in Sources */,
@@ -4781,6 +4848,7 @@
 				D6FEF45918EB045C0035421F /* WED_AptTable.cpp in Sources */,
 				D6FEF50418EB176A0035421F /* GUI_FormWindow.cpp in Sources */,
 				D6FEF55C18EB23B40035421F /* GUI_Label.cpp in Sources */,
+				D64B33401FCA16EB002207D0 /* priorityq.c in Sources */,
 				D60628E01EA110D90007CC13 /* WED_HierarchyUtils.cpp in Sources */,
 				D6E4C95418EC91DE000D98B8 /* json_reader.cpp in Sources */,
 				D6E4C95518EC91DE000D98B8 /* json_value.cpp in Sources */,

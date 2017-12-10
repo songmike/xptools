@@ -32,6 +32,7 @@
 #else
 #include <GL/glu.h>
 #endif
+#include "tesselator.h"
 
 void PointSequenceToVector(
 			IGISPointSequence *		ps,
@@ -93,36 +94,143 @@ void PointSequenceToVector(
 #define CALLBACK
 #endif
 
-static void CALLBACK TessBegin(GLenum mode)		{ glBegin(mode);				}
-static void CALLBACK TessEnd(void)				{ glEnd();						}
-static void CALLBACK TessVertex(const Point2 * p){																  glVertex2d(p->x(),p->y());	}
-static void CALLBACK TessVertexUV(const Point2 * p){ const Point2 * uv = p; ++uv; glTexCoord2f(uv->x(), uv->y()); glVertex2d(p->x(),p->y());	}
+//static void CALLBACK TessBegin(GLenum mode)		{ glBegin(mode);				}
+//static void CALLBACK TessEnd(void)				{ glEnd();						}
+//static void CALLBACK TessVertex(const Point2 * p){																  glVertex2d(p->x(),p->y());	}
+//static void CALLBACK TessVertexUV(const Point2 * p){ const Point2 * uv = p; ++uv; glTexCoord2f(uv->x(), uv->y()); glVertex2d(p->x(),p->y());	}
 
 void glPolygon2(const Point2 * pts, bool has_uv, const int * contours, int n)
 {
-	GLUtesselator * tess = gluNewTess();
-
-	gluTessCallback(tess, GLU_TESS_BEGIN,	(void (CALLBACK *)(void))TessBegin);
-	gluTessCallback(tess, GLU_TESS_END,		(void (CALLBACK *)(void))TessEnd);
-	if(has_uv)
-	gluTessCallback(tess, GLU_TESS_VERTEX,	(void (CALLBACK *)(void))TessVertexUV);
-	else
-	gluTessCallback(tess, GLU_TESS_VERTEX,	(void (CALLBACK *)(void))TessVertex);
-
-	gluBeginPolygon(tess);
-
-	while(n--)
+	TESStesselator * tess = tessNewTess(NULL);
+	
+	const Point2 * orig(pts);
+	
+	vector<GLfloat>	raw_pts;
+	raw_pts.reserve(n*2);
+	
+	for(int i = 0; i < n; ++i)
 	{
-		if (contours && *contours++)	gluNextContour(tess, GLU_INTERIOR);
-
-		double	xyz[3] = { pts->x(), pts->y(), 0 };
-		gluTessVertex(tess, xyz, (void*) pts++);
+		if(i == 0 || contours && contours[i])
+		{
+			if(!raw_pts.empty())
+			{
+				tessAddContour(tess, 2, &raw_pts[0], has_uv ? 16 : 8, raw_pts.size() / (has_uv ? 4 : 2));
+				raw_pts.clear();
+			}
+		}
+		raw_pts.push_back(pts->x());
+		raw_pts.push_back(pts->y());
+		++pts;
 		if(has_uv)
+		{
+			raw_pts.push_back(pts->x());
+			raw_pts.push_back(pts->y());
 			++pts;
+		}
+	}
+	if(!raw_pts.empty())
+	{
+				tessAddContour(tess, 2, &raw_pts[0], has_uv ? 16 : 8, raw_pts.size() / (has_uv ? 4 : 2));
+		raw_pts.clear();
 	}
 
-	gluEndPolygon (tess);
-	gluDeleteTess(tess);
+	const TESSreal nrm[3] = { 0, 0, 1 };
+	int ok = tessTesselate(tess, TESS_WINDING_NONZERO, TESS_POLYGONS, 3, 2, nrm);
+	if(ok)
+	{
+		pts = orig;
+	
+		const TESSindex* elems = tessGetElements(tess);
+		int elem_count = tessGetElementCount(tess);
+		
+		int vcount = tessGetVertexCount(tess);
+		const TESSreal * verts = tessGetVertices(tess);
+		const TESSindex * vidx = tessGetVertexIndices(tess);
+
+		glBegin(GL_TRIANGLES);
+
+		while(elem_count--)
+		{
+			TESSindex e1 = *elems++;
+			TESSindex e2 = *elems++;
+			TESSindex e3 = *elems++;
+
+			DebugAssert(e1 != TESS_UNDEF);
+			DebugAssert(e2 != TESS_UNDEF);
+			DebugAssert(e3 != TESS_UNDEF);
+
+
+			TESSindex i1 = vidx[e1];
+			TESSindex i2 = vidx[e2];
+			TESSindex i3 = vidx[e3];
+			if(i1 == TESS_UNDEF || i2 == TESS_UNDEF || i3 == TESS_UNDEF)
+			{
+				const TESSreal * v1 = verts + e1 * 2;
+				const TESSreal * v2 = verts + e2 * 2;
+				const TESSreal * v3 = verts + e3 * 2;
+
+				glVertex2fv(v1);
+				glVertex2fv(v2);
+				glVertex2fv(v3);
+			}
+			else
+			{
+				if(has_uv)
+				{
+					const Point2 * v1 = pts + i1 * 2;
+					const Point2 * v2 = pts + i2 * 2;
+					const Point2 * v3 = pts + i3 * 2;
+					
+					glTexCoord2(v1[1]);
+					glVertex2(v1[0]);
+
+					glTexCoord2(v2[1]);
+					glVertex2(v2[0]);
+
+					glTexCoord2(v3[1]);
+					glVertex2(v3[0]);
+				}
+				else
+				{
+					const Point2 * v1 = pts + i1;
+					const Point2 * v2 = pts + i2;
+					const Point2 * v3 = pts + i3;
+					
+					glVertex2(*v1);
+					glVertex2(*v2);
+					glVertex2(*v3);
+				}
+			}
+		}
+
+		glEnd();
+	}
+	
+	tessDeleteTess(tess);
+
+//	GLUtesselator * tess = gluNewTess();
+//
+//	gluTessCallback(tess, GLU_TESS_BEGIN,	(void (CALLBACK *)(void))TessBegin);
+//	gluTessCallback(tess, GLU_TESS_END,		(void (CALLBACK *)(void))TessEnd);
+//	if(has_uv)
+//	gluTessCallback(tess, GLU_TESS_VERTEX,	(void (CALLBACK *)(void))TessVertexUV);
+//	else
+//	gluTessCallback(tess, GLU_TESS_VERTEX,	(void (CALLBACK *)(void))TessVertex);
+//
+//	gluBeginPolygon(tess);
+//
+//	while(n--)
+//	{
+//		if (contours && *contours++)	gluNextContour(tess, GLU_INTERIOR);
+//
+//		double	xyz[3] = { pts->x(), pts->y(), 0 };
+//		gluTessVertex(tess, xyz, (void*) pts++);
+//		if(has_uv)
+//			++pts;
+//	}
+//
+//	gluEndPolygon (tess);
+//	gluDeleteTess(tess);
 }
 
 
