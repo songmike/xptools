@@ -104,59 +104,23 @@ endif
 
 ifdef PLAT_LINUX
 	DEFINES		:= -DLIN=1 -DIBM=0 -DAPL=0
-#	CFLAGS		:= $(M32_SWITCH) -D_GLIBCXX_USE_CXX11_ABI=0 -Wno-deprecated-declarations -Wno-multichar -pipe -frounding-math
-#	CXXFLAGS	:= $(M32_SWITCH) -D_GLIBCXX_USE_CXX11_ABI=0 -Wno-deprecated -Wno-deprecated-declarations -Wno-multichar -pipe -frounding-math
-#	LDFLAGS		:= $(M32_SWITCH) -D_GLIBCXX_USE_CXX11_ABI=0 -static-libgcc
-	CFLAGS		:= $(M32_SWITCH) -Wno-deprecated-declarations -Wno-multichar -pipe -frounding-math
-	CXXFLAGS	:= $(M32_SWITCH) -std=c++11 -Wno-deprecated -Wno-deprecated-declarations -Wno-multichar -pipe -frounding-math
+	CFLAGS		:= $(M32_SWITCH) -Wno-deprecated-declarations -Wno-multichar -frounding-math
+	CXXFLAGS	:= $(M32_SWITCH) -std=c++11 -Wno-deprecated -Wno-deprecated-declarations -Wno-multichar -frounding-math
 	LDFLAGS		:= $(M32_SWITCH) -static-libgcc
 	BARE_LDFLAGS	:=
 	STRIPFLAGS	:= -s -x
 endif
 ifdef PLAT_DARWIN
 	DEFINES		:= -DLIN=0 -DIBM=0 -DAPL=1
-	CXXFLAGS	:= $(M32_SWITCH) -mmacosx-version-min=10.6 -Wno-deprecated -Wno-deprecated-declarations -Wno-multichar -fvisibility=hidden
-	CFLAGS		:= $(M32_SWITCH) -mmacosx-version-min=10.6 -Wno-deprecated-declarations -Wno-multichar -fvisibility=hidden
-	LDFLAGS		:= $(M32_SWITCH) -mmacosx-version-min=10.6
+	CXXFLAGS	:= $(M32_SWITCH) -mmacosx-version-min=10.9 -Wno-deprecated -Wno-deprecated-declarations -Wno-multichar -fvisibility=hidden
+	CFLAGS		:= $(M32_SWITCH) -std=c++11 -mmacosx-version-min=10.9 -Wno-deprecated-declarations -Wno-multichar -fvisibility=hidden
+	LDFLAGS		:= $(M32_SWITCH) -mmacosx-version-min=10.9
 	STRIPFLAGS	:= -x
 endif
 ifdef PLAT_MINGW
 	DEFINES		:= -DLIN=0 -DIBM=1 -DAPL=0 -DBOOST_THREAD_USE_LIB=1
 	CFLAGS		:= $(M32_SWITCH) -Wno-deprecated-declarations -Wno-multichar -pipe -frounding-math
-	CXXFLAGS	:= $(M32_SWITCH) -Wno-deprecated -Wno-deprecated-declarations -Wno-multichar -pipe -frounding-math
-	LDFLAGS		:= $(M32_SWITCH) -static-libgcc
-	BARE_LDFLAGS	:=
-	STRIPFLAGS	:= -s -x
-endif
-
-
-##
-# configuration specific environment
-####################################
-
-ifeq ($(conf), release_opt)
-	CFLAGS		+= -Ofast -flto -fomit-frame-pointer -fstrict-aliasing
-	CXXFLAGS	+= -Ofast -flto -fomit-frame-pointer -fstrict-aliasing
-	DEFINES		+= -DDEV=0 -DNDEBUG
-	StripDebug	:= Yes
-else ifeq ($(conf), release)
-	CFLAGS		:= $(M32_SWITCH) -D_GLIBCXX_USE_CXX11_ABI=0 -Wno-deprecated-declarations -Wno-multichar -pipe -frounding-math
-	CXXFLAGS	:= $(M32_SWITCH) -D_GLIBCXX_USE_CXX11_ABI=0 -Wno-deprecated -Wno-deprecated-declarations -Wno-multichar -pipe -frounding-math
-	LDFLAGS		:= $(M32_SWITCH) -D_GLIBCXX_USE_CXX11_ABI=0 -static-libgcc
-	BARE_LDFLAGS	:=
-	STRIPFLAGS	:= -s -x
-endif
-ifdef PLAT_DARWIN
-	DEFINES		:= -DLIN=0 -DIBM=0 -DAPL=1
-	CXXFLAGS	:= $(M32_SWITCH) -mmacosx-version-min=10.6 -Wno-deprecated -Wno-deprecated-declarations -Wno-multichar -fvisibility=hidden
-	CFLAGS		:= $(M32_SWITCH) -mmacosx-version-min=10.6 -Wno-deprecated-declarations -Wno-multichar -fvisibility=hidden
-	LDFLAGS		:= $(M32_SWITCH) -mmacosx-version-min=10.6
-	STRIPFLAGS	:= -x
-endif
-ifdef PLAT_MINGW
-	DEFINES		:= -DLIN=0 -DIBM=1 -DAPL=0 -DBOOST_THREAD_USE_LIB=1
-	CFLAGS		:= $(M32_SWITCH) -Wno-deprecated-declarations -Wno-multichar -pipe -frounding-math
-	CXXFLAGS	:= $(M32_SWITCH) -Wno-deprecated -Wno-deprecated-declarations -Wno-multichar -pipe -frounding-math
+	CXXFLAGS	:= $(M32_SWITCH) -Wno-deprecated -Wno-deprecated-declarations -Wno-multichar -frounding-math
 	LDFLAGS		:= $(M32_SWITCH) -static-libgcc
 	BARE_LDFLAGS	:=
 	STRIPFLAGS	:= -s -x
