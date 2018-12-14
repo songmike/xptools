@@ -1400,7 +1400,7 @@ static int	DSF_ExportTileRecursive(
 						if(fac_is_auto_closed && bad_match(chain.front(),chain.back()))
 							problem_children.insert(what);
 						else
-							DSF_AccumChainBezier(chain.begin(),chain.end(), safe_bounds, cbs,writer, idx, fac->GetHeight(), fac_is_auto_closed);
+							DSF_AccumChainBezier(chain.cbegin(),chain.cend(), safe_bounds, cbs,writer, idx, fac->GetHeight(), fac_is_auto_closed);
 					}
 				}
 				else
@@ -1421,7 +1421,7 @@ static int	DSF_ExportTileRecursive(
 						if(fac_is_auto_closed && bad_match(chain.front(),chain.back()))
 							problem_children.insert(what);
 						else
-							DSF_AccumChain(chain.begin(),chain.end(), safe_bounds, cbs,writer, idx, fac->GetHeight(), fac_is_auto_closed);
+							DSF_AccumChain(chain.cbegin(),chain.cend(), safe_bounds, cbs,writer, idx, fac->GetHeight(), fac_is_auto_closed);
 					}
 				}
 			}

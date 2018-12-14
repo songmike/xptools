@@ -48,9 +48,9 @@
 	#error NO PLATFORM!
 #endif
 
-/************************************************************************************************************************************************************************
+/***********************************************************************************************************************************************
  * GLOBAL FEATURE CONTROL
- ************************************************************************************************************************************************************************/
+ ***********************************************************************************************************************************************/
 
 /*
 	This is sort of a hack: we can turn off and on some global flags here to try experimental features that we might otherwise not want.
@@ -119,9 +119,9 @@
 	#include "MemUtils.h"
 #endif
 
-/************************************************************************************************************************************************************************
+/*******************************************************************************************************************************************
  * STL AND OTHER GLOBAL INCLUDES THAT WE LIKE ENOUGH TO HAVE EVERYWHERE
- ************************************************************************************************************************************************************************/
+ *******************************************************************************************************************************************/
 
 #if defined(_MSC_VER)
 	#define _CRT_SECURE_NO_WARNING
@@ -130,7 +130,6 @@
 		#define _USE_MATH_DEFINES
 		#define _SILENCE_STDEXT_HASH_WARNINGS
 	#endif
-
 	#define strcasecmp _stricmp
 	#define strncasecmp _strnicmp
 
@@ -139,7 +138,6 @@
 	#define ENOERR 0
 	#define snprintf _snprintf
 	#define strdup _strdup
-
 	#define S_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)
 #endif
  
@@ -150,7 +148,14 @@
 	#include <set>
 	#include <algorithm>
 	#include <iterator>
+	
 	#include <unordered_map>
+	#define hash_map      unordered_map
+	#define hash_multimap unordered_multimap
+	#define HASH_MAP_NAMESPACE_START namespace std {
+	#define HASH_MAP_NAMESPACE_END }
+	#define HASH_PARENT(x,y)
+	#define _MSL_THROW throw()
 
 	#if SAFE_VECTORS && DEV
 		// This goo hacks vector to bounds check ALL array accesses...not fast, but a nice way to catch stupid out of bounds conditions.
@@ -252,9 +257,9 @@
 	#define __ASSERTMACROS__
 #endif // OS specific file handling hacks
 
-/************************************************************************************************************************************************************************
+/****************************************************************************************************************************************************************
  * CGAL ADAPTER MACROS.
- ************************************************************************************************************************************************************************/
+ ****************************************************************************************************************************************************************/
 
 /*
 	The original theory was that we would use macros to let the airport code run in either double-precision or CGAL-precision math.  But in practice this is probably
