@@ -67,7 +67,7 @@ private:
 		WED_FastBuffer *	buffer;
 	};
 
-	typedef hash_map<int, ObjInfo>		ObjInfoMap;
+	typedef unordered_map<int, ObjInfo>		ObjInfoMap;
 
 	ObjInfoMap				mObjects;
 	WED_Archive *			mArchive;

@@ -157,9 +157,9 @@ static bool has_any_of_class(WED_Thing * who, const char ** classes)
 	return false;
 }
 
-static void count_all_of_classes_recursive(const WED_Thing * who, hash_map<const char*, vector<const WED_Thing*> >& classes, int& total)
+static void count_all_of_classes_recursive(const WED_Thing * who, unordered_map<const char*, vector<const WED_Thing*> >& classes, int& total)
 {
-	for (hash_map<const char*, vector<const WED_Thing*> >::iterator itr = classes.begin(); itr != classes.end(); ++itr)
+	for (unordered_map<const char*, vector<const WED_Thing*> >::iterator itr = classes.begin(); itr != classes.end(); ++itr)
 	{
 		if (strcmp(who->GetClass(), itr->first) == 0)
 		{
@@ -175,7 +175,7 @@ static void count_all_of_classes_recursive(const WED_Thing * who, hash_map<const
 	}
 }
 
-static int count_all_of_classes(const WED_Thing * who, hash_map<const char*, vector<const WED_Thing*> >& classes)
+static int count_all_of_classes(const WED_Thing * who, unordered_map<const char*, vector<const WED_Thing*> >& classes)
 {
 	int total = 0;
 	count_all_of_classes_recursive(who, classes, total);
@@ -204,7 +204,7 @@ static bool is_of_type_ground_vehicles(WED_Thing* route)
 
 static bool has_atc_ground_routes(WED_Airport* who)
 {
-	hash_map<const char*, vector<const WED_Thing*> > classes;
+	unordered_map<const char*, vector<const WED_Thing*> > classes;
 	classes.insert(make_pair(k_atc_ground_route_class[0], vector<const WED_Thing*>()));
 	classes.insert(make_pair(k_atc_ground_route_class[1], vector<const WED_Thing*>()));
 	classes.insert(make_pair(k_atc_ground_route_class[2], vector<const WED_Thing*>()));

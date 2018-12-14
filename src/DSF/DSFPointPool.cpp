@@ -161,7 +161,7 @@ pair<int, int>	DSFSharedPointPool::AcceptContiguousPool(int p, SharedSubPool * p
 	{
 		DSFTuple	pt(inPoints[n]);
 		pt.encode(pool->mOffset,pool->mScale);
-		pool->mPointsIndex.insert(hash_map<DSFTuple, int>::value_type(
+		pool->mPointsIndex.insert(unordered_map<DSFTuple, int>::value_type(
 					pt, pool->mPoints.size()));
 		pool->mPoints.push_back(pt);
 	}
@@ -179,7 +179,7 @@ int	DSFSharedPointPool::CountShared(const DSFTupleVector& inPoints)
 			DSFTuple	point(inPoints[n]);
 			if (point.encode(pool->mOffset, pool->mScale))
 			{
-				hash_map<DSFTuple,int>::iterator iter = pool->mPointsIndex.find(point);
+				unordered_map<DSFTuple,int>::iterator iter = pool->mPointsIndex.find(point);
 				if (iter != pool->mPointsIndex.end())
 					++c;
 			}
@@ -197,7 +197,7 @@ pair<int, int>	DSFSharedPointPool::AcceptShared(const DSFTuple& inPoint)
 		DSFTuple	point(inPoint);
 		if (point.encode(pool->mOffset, pool->mScale))
 		{
-			hash_map<DSFTuple,int>::iterator iter = pool->mPointsIndex.find(point);
+			unordered_map<DSFTuple,int>::iterator iter = pool->mPointsIndex.find(point);
 			if (iter != pool->mPointsIndex.end())
 				return pair<int,int>(p, iter->second);
 		}
@@ -215,7 +215,7 @@ pair<int, int>	DSFSharedPointPool::AcceptShared(const DSFTuple& inPoint)
 			{
 				int our_pos = pool->mPoints.size();
 				pool->mPoints.push_back(point);
-				pool->mPointsIndex.insert(hash_map<DSFTuple, int>::value_type(point, our_pos));
+				pool->mPointsIndex.insert(unordered_map<DSFTuple, int>::value_type(point, our_pos));
 				return pair<int, int>(p, our_pos);
 			}
 			else if(exemplar == mPools.end())
@@ -238,7 +238,7 @@ pair<int, int>	DSFSharedPointPool::AcceptShared(const DSFTuple& inPoint)
 
 		int our_pos = exemplar->mPoints.size();
 		exemplar->mPoints.push_back(point);
-		exemplar->mPointsIndex.insert(hash_map<DSFTuple, int>::value_type(point, our_pos));
+		exemplar->mPointsIndex.insert(unordered_map<DSFTuple, int>::value_type(point, our_pos));
 		return pair<int, int>(mPools.size()-1, our_pos);
 	}
 
@@ -555,7 +555,7 @@ DSFPointPoolLoc	DSF32BitPointPool::AcceptContiguous(const DSFTupleVector& inPoin
 			return DSFPointPoolLoc(-1, -1);
 		}
 
-		mPointsIndex.insert(hash_map<DSFTuple, int>::value_type(pt, mPoints.size()));
+		mPointsIndex.insert(unordered_map<DSFTuple, int>::value_type(pt, mPoints.size()));
 		mPoints.push_back(pt);
 	}
 	return result;
@@ -567,12 +567,12 @@ DSFPointPoolLoc	DSF32BitPointPool::AcceptShared(const DSFTuple& inPoint)
 	if (!pt.encode32(mOffset, mScale))
 		return DSFPointPoolLoc(-1, -1);
 
-	hash_map<DSFTuple, int>::iterator iter = mPointsIndex.find(pt);
+	unordered_map<DSFTuple, int>::iterator iter = mPointsIndex.find(pt);
 	if (iter != mPointsIndex.end())
 		return DSFPointPoolLoc(0, iter->second);
 
 	DSFPointPoolLoc	result(0, mPoints.size());
-	mPointsIndex.insert(hash_map<DSFTuple, int>::value_type(pt, mPoints.size()));
+	mPointsIndex.insert(unordered_map<DSFTuple, int>::value_type(pt, mPoints.size()));
 	mPoints.push_back(pt);
 	return result;
 }
@@ -646,7 +646,7 @@ static unsigned short * strip_break(unsigned short * idx_start, unsigned short *
 void DSFOptimizePrimitives(
 					vector<DSFPrimitive>& io_primitives)
 {
-	typedef	hash_map<DSFTuple, int>		idx_t;
+	typedef	unordered_map<DSFTuple, int>		idx_t;
 	vector<DSFPrimitive>				out_prims;
 	idx_t								point_index;
 	vector<DSFTuple>					vertices;

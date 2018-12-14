@@ -115,7 +115,7 @@ private:
 
 	friend class	WED_Persistent;
 	friend	class	WED_UndoMgr;
-	typedef hash_map<int, WED_Persistent *>	ObjectMap;
+	typedef unordered_map<int, WED_Persistent *>	ObjectMap;
 
 	ObjectMap		mObjects;		// Our objects!
 	bool			mDying;			// Flag to self - WE are killing ourselves - ignore objects.

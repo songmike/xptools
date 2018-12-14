@@ -25,6 +25,7 @@
 
 #include <math.h>
 #include <algorithm>
+#include <unordered_map>
 
 #include "XESConstants.h"
 #include "ProgressUtils.h"
@@ -447,17 +448,17 @@ float	DEMGeo_LocalMinMaxWithCache(
  * DEMGeoMap - MULTIPLE RASTER LAYERS BY CODE
  *************************************************************************************/
 
-class DEMGeoMap : public hash_map<int, DEMGeo> {
+class DEMGeoMap : public unordered_map<int, DEMGeo> {
 public:
 	// Write ourselves a hokey const-safe [] because I am impatient!!
 	DEMGeo& operator[](int i) {
-		return hash_map<int, DEMGeo>::operator[](i);
+		return unordered_map<int, DEMGeo>::operator[](i);
 	}
 
 
 	const DEMGeo& operator[](int i) const {
 		static DEMGeo dummy;
-		hash_map<int, DEMGeo>::const_iterator f = this->find(i);
+		unordered_map<int, DEMGeo>::const_iterator f = this->find(i);
 		if (f == this->end()) return dummy;
 		return f->second;
 	}

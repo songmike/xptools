@@ -1058,7 +1058,7 @@ void WED_PropertyTable::GetClosed(set<int>& closed_list)
 	WED_Thing * root = WED_GetWorld(mResolver);
 	WED_Archive * arch = root->GetArchive();
 
-	for (hash_map<int, int>::iterator it = mOpen.begin(); it != mOpen.end(); ++it)
+	for (unordered_map<int, int>::iterator it = mOpen.begin(); it != mOpen.end(); ++it)
 	{
 		if ((arch->Fetch(it->first) != NULL) && (!GetOpen(it->first)))
 		{

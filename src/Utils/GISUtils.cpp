@@ -422,7 +422,7 @@ bool	FetchTIFFCornersWithJP2K(const char * inFileName, double corners[8], int& p
 #endif
 
 #if USE_TIF
-hash_map<int, projPJ>	sUTMProj;
+unordered_map<int, projPJ>	sUTMProj;
 struct CTABLE *		sNADGrid = NULL;
 
 static	void	SetupUTMMap(int inZone)
@@ -440,7 +440,7 @@ static	void	SetupUTMMap(int inZone)
 	proj = pj_init(CSLCount(args), args);
 	CSLDestroy(args);
 	if (proj != NULL)
-		sUTMProj.insert(hash_map<int, projPJ>::value_type(inZone, proj));
+		sUTMProj.insert(unordered_map<int, projPJ>::value_type(inZone, proj));
 
 //	sNADGrid = nad_init("conus.bin");
 }

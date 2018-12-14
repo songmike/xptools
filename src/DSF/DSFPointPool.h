@@ -23,9 +23,7 @@
 #ifndef DSFPOINTPOOL_H
 #define DSFPOINTPOOL_H
 
-#include <vector>
 #include <list>
-#include <stdint.h>
 
 #include "AssertUtils.h"
 #include "STLUtils.h"
@@ -100,21 +98,12 @@ private:
 
 };
 
-HASH_MAP_NAMESPACE_START
-#if MSC
-template<> inline
-size_t hash_value<DSFTuple>(const DSFTuple& _Keyval)
-{
-	return _Keyval.hash();
+namespace std {
+	template <>
+	struct hash<DSFTuple> /* HASH_PARENT(DSFTuple, std::size_t) */ {
+		std::size_t operator()(const DSFTuple& key) const { return key.hash(); }
+	};
 }
-
-#else
-template <>
-struct hash<DSFTuple> HASH_PARENT(DSFTuple, std::size_t) {
-	std::size_t operator()(const DSFTuple& key) const { return key.hash(); }
-};
-#endif
-HASH_MAP_NAMESPACE_END
 
 typedef	vector<DSFTuple>			DSFTupleVector;
 typedef list<DSFTupleVector>		DSFTupleVectorVector;
@@ -179,7 +168,7 @@ private:
 		DSFTuple					mScale;
 
 		DSFTupleVector				mPoints;			// These are our points
-		hash_map<DSFTuple, int>		mPointsIndex;		// This is used to see if we already have a point.
+		unordered_map<DSFTuple, int>		mPointsIndex;		// This is used to see if we already have a point.
 
 	};
 
@@ -266,7 +255,7 @@ private:
 	DSFTuple					mScale;
 
 	DSFTupleVector				mPoints;			// These are our points
-	hash_map<DSFTuple, int>		mPointsIndex;		// This is used to see if we already have a point.
+	unordered_map<DSFTuple, int>		mPointsIndex;		// This is used to see if we already have a point.
 
 };
 

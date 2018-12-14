@@ -123,11 +123,11 @@ bool	WriteNormalWithHeight(const string& out_file, const DEMGeo& elev, const DEM
 // and color lookup table based on the enum colors in the config files.
 bool	LoadTranslationFile(const char * 		inFileName,
 						vector<int>& 			outForwardMap,
-						hash_map<int, int> * 	outReverseMap,
+						unordered_map<int, int> * 	outReverseMap,
 						vector<char> *			outCLUT);
 // Translate a DEM by the given mappings.
 bool	TranslateDEMForward(DEMGeo& ioDEM, const vector<int>& inForwardMap);
-bool	TranslateDEMReverse(DEMGeo& ioDEM, const hash_map<int, int>& inReverseMap);
+bool	TranslateDEMReverse(DEMGeo& ioDEM, const unordered_map<int, int>& inReverseMap);
 // One-step - load the filter, translate the DEM.
 bool	TranslateDEM(DEMGeo& ioDEM, const char * inFileName);
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, Laminar Research.
+ * Copyright (c) 2008, Laminar Research.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -21,27 +21,38 @@
  *
  */
 
-#ifndef WED_ASSERT_H
-#define WED_ASSERT_H
+#include "WED_AGStringPlacement.h"
 
-#include <exception>
+DEFINE_PERSISTENT(WED_AGStringPlacement)
+TRIVIAL_COPY(WED_AGStringPlacement,WED_GISPolygon)
 
-class wed_assert_fail_exception : public std::exception {
-public:
-	wed_assert_fail_exception(const char * c, const char * f, int l) throw()
-		: c_(c), f_(f), l_(l) {}
-	wed_assert_fail_exception(const wed_assert_fail_exception& x) throw()
-		: c_(x.c_), f_(x.f_), l_(x.l_) {}
-	wed_assert_fail_exception& operator=(const wed_assert_fail_exception& x) throw() {
-		c_ = x.c_; f_ = x.f_; l_ = x.l_; return *this; }
-	virtual ~wed_assert_fail_exception() throw() {};
-	virtual const char* what() const throw() { return c_; };
-	const char * c_;
-	const char * f_;
-		  int    l_;
-};
+WED_AGStringPlacement::WED_AGStringPlacement(WED_Archive * a, int i) : WED_GISPolygon(a,i),
+	height  (this,PROP_Name("Height", XML_Name("polygon_placement","Height")),4,3),
+	resource(this,PROP_Name("Resource",XML_Name("polygon_placement","resource")),"")
+{
+}
 
+WED_AGStringPlacement::~WED_AGStringPlacement()
+{
+}
 
-void	WED_AssertInit(void);
+double WED_AGStringPlacement::GetHeight(void) const
+{
+	return height.value;
+}
 
-#endif /* WED_ASSERT_H */
+void WED_AGStringPlacement::SetHeight(double h)
+{
+	height = h;
+}
+
+void		WED_AGStringPlacement::GetResource(	  string& r) const
+{
+	r = resource.value;
+}
+
+void		WED_AGStringPlacement::SetResource(const string& r)
+{
+	resource = r;
+}
+

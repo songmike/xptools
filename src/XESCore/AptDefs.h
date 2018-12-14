@@ -597,6 +597,6 @@ struct AptInfo_t {
 
 typedef vector<AptInfo_t>	AptVector;
 
-typedef hash_multimap<int,int>	AptIndex;
+typedef unordered_multimap<int,int>	AptIndex;
 
 #endif

@@ -224,7 +224,7 @@ private:
 
 		//A hash map of open folders in the heirarchy,
 		//Uses the prefix system!
-		hash_map<string,int>	mOpen;
+		unordered_map<string,int>	mOpen;
 
 		//A cache of all paths to be shown.
 		vector<string>			mCache;

@@ -349,7 +349,7 @@ struct	TexInfo {
 	GUI_TexPosition_t	metrics;
 };
 
-typedef hash_map<string, TexInfo>	TexResourceTable;
+typedef unordered_map<string, TexInfo>	TexResourceTable;
 static TexResourceTable		sTexes;
 
 int	GUI_GetTextureResource(

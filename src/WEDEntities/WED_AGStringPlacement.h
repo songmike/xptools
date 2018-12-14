@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, Laminar Research.
+ * Copyright (c) 2008, Laminar Research.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -21,27 +21,37 @@
  *
  */
 
-#ifndef WED_ASSERT_H
-#define WED_ASSERT_H
+#ifndef WED_AGStringPlacement_H
+#define WED_AGStringPlacement_H
 
-#include <exception>
+#include "IHasResource.h"
+#include "WED_GISPolygon.h"
 
-class wed_assert_fail_exception : public std::exception {
+class	WED_AGStringPlacement : public WED_GISPolygon, public IHasResource {
+
+DECLARE_PERSISTENT(WED_AGStringPlacement)
+
 public:
-	wed_assert_fail_exception(const char * c, const char * f, int l) throw()
-		: c_(c), f_(f), l_(l) {}
-	wed_assert_fail_exception(const wed_assert_fail_exception& x) throw()
-		: c_(x.c_), f_(x.f_), l_(x.l_) {}
-	wed_assert_fail_exception& operator=(const wed_assert_fail_exception& x) throw() {
-		c_ = x.c_; f_ = x.f_; l_ = x.l_; return *this; }
-	virtual ~wed_assert_fail_exception() throw() {};
-	virtual const char* what() const throw() { return c_; };
-	const char * c_;
-	const char * f_;
-		  int    l_;
+
+			double		GetHeight(void) const;
+			void		SetHeight(double h);
+
+	virtual void		GetResource(	  string& r) const;
+	virtual void		SetResource(const string& r);
+
+	virtual const char *	HumanReadableType(void) const { return "AG Strings"; }
+
+protected:
+
+	virtual	bool		IsInteriorFilled(void) const { return true; }
+
+private:
+
+	WED_PropIntText			height;
+	WED_PropStringText		resource;
+
 };
 
 
-void	WED_AssertInit(void);
 
-#endif /* WED_ASSERT_H */
+#endif /* WED_AGStringPlacement_H */

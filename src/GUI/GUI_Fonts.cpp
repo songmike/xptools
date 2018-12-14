@@ -76,7 +76,7 @@ struct	OGL_char_info {
 
 inline int FIXED1616(float f) { return f * 65536.0f; }
 
-typedef	hash_map<UTF32, OGL_char_info>	OGL_char_map;
+typedef	unordered_map<UTF32, OGL_char_info>	OGL_char_map;
 
 class	TT_font_info {
 public:

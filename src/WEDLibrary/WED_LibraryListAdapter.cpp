@@ -397,7 +397,7 @@ void WED_LibraryListAdapter::DoFilter()
 
 int		WED_LibraryListAdapter::IsOpen(const string& r)
 {
-	hash_map<string,int>::iterator i = mOpen.find(r);
+	unordered_map<string,int>::iterator i = mOpen.find(r);
 	if(i == mOpen.end()) return false;
 	return i->second;
 }

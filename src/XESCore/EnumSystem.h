@@ -47,7 +47,7 @@ enum {
  * all enums should be packed. */
 
 typedef	vector<string>			TokenMap;
-typedef hash_map<string, int>	TokenReverseMap;
+typedef unordered_map<string, int>	TokenReverseMap;
 typedef	vector<int>				TokenConversionMap;
 
 extern	TokenMap		gTokens;

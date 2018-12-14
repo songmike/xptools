@@ -205,7 +205,7 @@ private:
 
 	IResolver *					mResolver;
 
-	hash_map<int,int>			mOpen;
+	unordered_map<int,int>		mOpen;
 
 	int							mVertical;
 	int							mDynamicCols;
